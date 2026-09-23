@@ -21,10 +21,23 @@ void printArray(int (&arr)[10]) {
     }
 }
 
+/**
+ * @brief функция меняет местами элементы массива по их индексам
+ * @param arr массив из 10 чисел
+ * @param i индекс первого меняемого элемента массива
+ * @param j индекс второго меняемого элемента массива
+ */
+void swapElements(int (&arr)[10], int i, int j) {
+    swap(arr[i], arr[j]);
+}
+
 int main()
 {
     int arr[10];
     fillArray(arr);
+    printArray(arr);
+    cout << endl;
+    swapElements(arr, 8, 9);
     printArray(arr);
     return 0;
 }
