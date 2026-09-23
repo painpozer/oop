@@ -31,6 +31,20 @@ void swapElements(int (&arr)[10], int i, int j) {
     swap(arr[i], arr[j]);
 }
 
+/**
+ * @brief функция умножает элементы массива на 2
+ * @param arr массив из 10 чисел
+ */
+void multiplyByTwo(int (&arr)[10]) {
+    for (int& i : arr) {
+        i = i * 2;
+    }
+}
+
+/**
+ * @brief основная функция которая запускает остальные функции для заполнения масиива значениями, вывода их на экран, переставления элементов местами и умножения этих элементов на 2
+ * @param arr массив из 10 чисел
+ */
 int main()
 {
     int arr[10];
@@ -38,6 +52,9 @@ int main()
     printArray(arr);
     cout << endl;
     swapElements(arr, 8, 9);
+    printArray(arr);
+    cout << endl;
+    multiplyByTwo((arr));
     printArray(arr);
     return 0;
 }
