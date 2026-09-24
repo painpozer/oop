@@ -64,16 +64,21 @@ int main ()
     int n;
     cout << "введите размер массива  ";
     cin >> n;
-    cout << n;
-    cout << endl;
     int* arr = new int[n];
     fillArray(arr, n);
     printArray(arr, n);
     cout << endl;
     process(arr, n);
     printArray(arr, n);
+    cout << endl;
     delete[] arr;
     arr = nullptr;
+    if (arr != nullptr) {
+        cout << "Значение по указателю: " << *arr << endl;
+    }
+    else {
+        cout << "Нельзя получить значение: arr = nullptr" << endl;
+    }
 
 
 
