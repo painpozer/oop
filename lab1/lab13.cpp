@@ -35,14 +35,25 @@ int& getElement(SafeArray& arr, int index)
         static int a = 0;
         return a;
     }
-
     return arr.data[index];
 }
 
+/**
+* @brief функция выводит элементы массива через const
+* @param arr наш массив который надо вывести
+**/
+void printSafe(const SafeArray& arr) {
+    for (int i = 0; i < arr.size; i++) {
+        cout << arr.data[i] << " ";
+    }
+    cout << endl;
+}
+
 int main() {
-    SafeArray arr = createArray(5);
-
+    SafeArray arr = createArray(3);
+    getElement(arr, 0) = 10;
+    getElement(arr, 1) = 10;
     getElement(arr, 2) = 10;
-
+    printSafe(arr);
     return 0;
 }
