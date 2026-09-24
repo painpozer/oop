@@ -69,17 +69,29 @@ void printMatrix(int** matrix, int rows, int cols, bool showBorders = true, stri
     cout << endl;
 }
 
+/**
+ * @brief освобождает память, занятую матрицей
+ * @param matrix указатель на матрицу
+ * @param rows количество строк
+ */
+void freeMatrix(int** matrix, int rows) {
+    for(int i = 0; i < rows; ++i) {
+        delete[] matrix[i];
+    }
+    delete[] matrix;
+}
+
 int main() {
 
     int rows = 7;
     int cols = 2;
-    int** myMatrix = allocateMatrix(rows, cols);
-    fillMatrix(myMatrix, rows, cols);
-    printMatrix(myMatrix, rows, cols, true);
-    printMatrix(myMatrix, rows, cols, true, "aaaaa");
-
-    printMatrix(myMatrix, rows, cols, false, "без рамки");
-
+    int** matrix = allocateMatrix(rows, cols);
+    fillMatrix(matrix, rows, cols);
+    printMatrix(matrix, rows, cols, true);
+    printMatrix(matrix, rows, cols, true, "aaaaa");
+    printMatrix(matrix, rows, cols, false, "без рамки");
+    freeMatrix(matrix, rows);
+    matrix = nullptr;
     return 0;
 
 }
