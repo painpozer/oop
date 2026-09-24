@@ -2,22 +2,6 @@
 using namespace std;
 
 /**
-* @brief функция определяет находится ли индекс за границей
-* @param index индекс элемента массива
-**/
-int& getElement(SafeArray& arr, int index)
-{
-    if (index < 0 || index >= arr.size)
-    {
-        cout << "ошибка, индекс за границей";
-        static int a = 0;
-        return a;
-    }
-
-    return arr.data[index];
-}
-
-/**
  * @struct SafeArray
  * @brief Хранит динамический массив и количество его элементов
  */
@@ -39,7 +23,26 @@ SafeArray createArray(int size) {
     return arr;
 }
 
+/**
+* @brief функция определяет находится ли индекс за границей
+* @param index индекс элемента массива
+**/
+int& getElement(SafeArray& arr, int index)
+{
+    if (index < 0 || index >= arr.size)
+    {
+        cout << "ошибка, индекс за границей";
+        static int a = 0;
+        return a;
+    }
+
+    return arr.data[index];
+}
+
 int main() {
+    SafeArray arr = createArray(5);
+
+    getElement(arr, 2) = 10;
 
     return 0;
 }
