@@ -1,4 +1,5 @@
 #include <iostream>
+#include <ctime>
 using namespace std;
 
 
@@ -15,16 +16,30 @@ void fillArray(int* arr, int size) {
 }
 
 /**
- * @brief ищет первый отриц элемент массива
+ * @brief ищет первый отриц элемент массива и выводит новый массив до первого отрицательного элемента
  * @param size размер массива
  * @param arr указатель массива из n чисел
  */
-void process(int*& arr, int size) {
+void process(int*& arr, int& size) {
+    int index = -1;
     for (int i = 0; i < size; i++) {
         if (arr[i] < 0) {
-            cout << "первый отрицательный элемент: " << arr[i] << endl;
+            index = i;
             break;
         }
+    }
+
+    if (index != -1) {
+        int* newarr = new int[index];
+
+        for (int i = 0; i < index; i++) {
+            newarr[i] = arr[i];
+        }
+
+        delete[] arr;
+
+        arr = newarr;
+        size = index;
     }
 }
 
@@ -45,6 +60,7 @@ void printArray(int* arr, int size) {
  */
 int main ()
 {
+    srand(time(0));
     int n;
     cout << "введите размер массива  ";
     cin >> n;
@@ -55,6 +71,9 @@ int main ()
     printArray(arr, n);
     cout << endl;
     process(arr, n);
+    printArray(arr, n);
+    delete[] arr;
+    arr = nullptr;
 
 
 
