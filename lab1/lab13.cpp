@@ -2,6 +2,22 @@
 using namespace std;
 
 /**
+* @brief функция определяет находится ли индекс за границей
+* @param index индекс элемента массива
+**/
+int& getElement(SafeArray& arr, int index)
+{
+    if (index < 0 || index >= arr.size)
+    {
+        cout << "ошибка, индекс за границей";
+        static int a = 0;
+        return a;
+    }
+
+    return arr.data[index];
+}
+
+/**
  * @struct SafeArray
  * @brief Хранит динамический массив и количество его элементов
  */
