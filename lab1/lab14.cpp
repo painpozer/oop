@@ -76,6 +76,9 @@ int main() {
     int** myMatrix = allocateMatrix(rows, cols);
     fillMatrix(myMatrix, rows, cols);
     printMatrix(myMatrix, rows, cols, true);
+    printMatrix(myMatrix, rows, cols, true, "aaaaa");
+
+    printMatrix(myMatrix, rows, cols, false, "без рамки");
 
     return 0;
 
