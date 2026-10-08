@@ -66,3 +66,40 @@ Course::Course(string name, CourseFormat format, int studentCount, int maxStuden
     objectCount++;
     cout << "[Course] Создан курс: " << this->name << endl;
 }
+/// @brief Деструктор. Уменьшает счётчик объектов и печатает об этом в консоль
+Course::~Course() {
+    objectCount--;
+    cout << "[Course] Уничтожен курс: " << name << " (осталось объектов: " << objectCount << ")" << endl;
+}
+/// @brief Получить название курса
+string Course::getName() const {return name;}
+
+/// @brief Получить формат обучения
+CourseFormat Course::getFormat() const {return format;}
+
+/// @brief Получить количество студентов
+int Course::getStudentCount() const {return studentCount;}
+
+/// @brief Получить максимальное количество студентов
+int Course::getMaxStudents() const {return maxStudents;}
+
+/// @brief Получить количество учебных часов
+int Course::getHours() const {return hours;}
+
+/**
+ * @brief Получить текущее количество существующих объектов
+ * @return Число живых экземпляров Course
+ */
+int Course::getObjectCount() {return objectCount;}
+
+/**
+ * @brief Преобразовать формат обучения в строку
+ * @param format Формат обучения
+ * @return Строковое представление формата
+ * @retval "Очный"     для CourseFormat::fullTime()
+ * @retval "Заочный"   для CourseFormat::partTime()
+ * @retval "Неизвестно" для некорректного значения
+ */
+string Course::formatToString(CourseFormat format) {
+    return format.toString();
+}
