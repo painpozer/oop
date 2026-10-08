@@ -41,3 +41,28 @@ Course::Course(string name, int maxStudents, int hours) :
     objectCount++;
     cout << "[Course] Создан курс: " << this->name << endl;
 }
+/**
+ * @brief Параметризованный конструктор (полный)
+ * @param name Название курса
+ * @param format Формат обучения
+ * @param studentCount Начальное количество студентов
+ * @param maxStudents Максимальное количество студентов
+ * @param hours Количество учебных часов
+ * @note Некорректные значения корректируются к допустимым
+ *       без выброса исключений
+ */
+Course::Course(string name, CourseFormat format, int studentCount, int maxStudents, int hours) :
+    name(name),
+    studentCount(studentCount),
+    maxStudents(maxStudents),
+    hours(hours),
+    format(format)
+    // Проверка корректности входных данных
+{
+    if (this->maxStudents <= 0) this->maxStudents = 20;
+    if (this->hours <= 0) this->hours = 72;
+    if (this->studentCount < 0) this->studentCount = 0;
+    if (this->studentCount > this->maxStudents) this->studentCount = this->maxStudents;
+    objectCount++;
+    cout << "[Course] Создан курс: " << this->name << endl;
+}
