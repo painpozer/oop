@@ -5,6 +5,21 @@ using namespace std;
 /// @brief Инициализация статического счётчика объектов
 int Course::objectCount = 0;
 
+CourseFormat::CourseFormat(int formatCode) {
+    if (formatCode < 0 || formatCode > 1) this->type = 0;
+    else this->type = formatCode;
+}
+
+string CourseFormat::toString() const {
+    switch (type) {
+        case 0: return "Очный";
+        case 1: return "Заочный";
+    }
+    return "Неизвестно";
+}
+
+CourseFormat CourseFormat::fullTime() { return CourseFormat(0); }
+CourseFormat CourseFormat::partTime() { return CourseFormat(1); }
 /**
  * @brief Конструктор по умолчанию
  * @details Инициализирует курс значениями: "Без названия", Очный, 0 студентов, 20 максимум, 72 часа

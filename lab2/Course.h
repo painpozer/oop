@@ -12,44 +12,17 @@ class CourseFormat {
 private:
     int type; ///< 0 - Очный, 1 - Заочный
 public:
-    /**
-     * @brief Конструктор с кодом формата
-     * @param type Код в диапазоне [0, 1]. Иначе приводится к 0 (Очный)
-     */
-    CourseFormat(int type) {
-        if (type == 1) {
-            type = 1;  // Заочный
-        } else {
-            type = 0;  // Очный
-        }
-    }
-    /**
-     * @brief Преобразовать формат обучения в строку
-     * @return "Очный" или "Заочный"
-     */
-    string toString() const {
-        switch (type) {
-            case 0: return "Очный";
-            case 1: return "Заочный";
-        }
-        return "Неизвестно";
-    }
+    CourseFormat(int formatCode);
+    string toString() const;
+
     /// @brief Фабрики для читаемости
-    static CourseFormat fullTime() { return CourseFormat(0); }
-    static CourseFormat partTime() { return CourseFormat(1); }
+    static CourseFormat fullTime();
+    static CourseFormat partTime();
 };
 
 /**
  * @class Course
  * @brief Класс, описывающий учебный курс.
- *
- * Хранит информацию о курсе: название, формат обучения,
- * количество студентов, максимальное количество студентов
- * и количество учебных часов.
- * Поддерживает операции добавления и удаления студентов,
- * изменения количества часов и проверки заполненности курса.
- * Ведёт подсчёт существующих объектов через статический счётчик.
- *
  */
 class Course {
 private:
@@ -59,32 +32,26 @@ private:
     int hours; ///< Количество часов
     CourseFormat format; ///< Формат обучения
     static int objectCount; ///< Статический счётчик существующих объектов
-    bool isStateValid() const;
+
+
 public:
     /**
      * @brief Конструктор по умолчанию.
-     *
-     * Создаёт курс с названием "Без названия",
-     * очным форматом обучения, без студентов,
-     * максимальным количеством 20 студентов
-     * и количеством 72 учебных часов.
      */
     Course();
 
     /**
-     * @brief Параметризованный конструктор.
-     *
-     * Создаёт новый курс без студентов.
+     * @brief Параметризованный конструктор (упрощённый, 3 аргумента).
+     * Создаёт новый курс без студентов, с очным форматом по умолчанию.
      *
      * @param name Название курса
-     * @param format Формат обучения
      * @param maxStudents Максимальное количество студентов
      * @param hours Количество учебных часов
      */
-    Course(string name, CourseFormat format, int maxStudents, int hours);
+    Course(string name, int maxStudents, int hours); // <--- ВОТ ЭТОГО НЕ ХВАТАЛО
 
     /**
-     * @brief Параметризованный конструктор с количеством студентов.
+     * @brief Параметризованный конструктор (полный, 5 аргументов).
      *
      * @param name Название курса
      * @param format Формат обучения
@@ -137,6 +104,7 @@ public:
      */
     bool removeStudent();
 
+
     /**
      * @brief Изменить количество учебных часов
      * @param newHours Новое количество часов (должно быть > 0)
@@ -153,7 +121,7 @@ public:
     /// @brief Вывести состояние курса
     void print() const;
 
+    bool isStateValid() const;
 };
-
 
 #endif //LAB2_COURSE_H
