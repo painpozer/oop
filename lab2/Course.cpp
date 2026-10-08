@@ -103,3 +103,79 @@ int Course::getObjectCount() {return objectCount;}
 string Course::formatToString(CourseFormat format) {
     return format.toString();
 }
+
+/**
+ * @brief Добавить одного студента на курс
+ * @return true при успехе; false если курс уже заполнен
+ * @warning При ошибке сообщение выводится в консоль
+ */
+bool Course::addStudent() {
+    if (isFull()) {
+        cerr << "Ошибка. Курс '" << name << "' уже заполнен (" << studentCount << "/" << maxStudents << ")" << endl;
+        return false;
+    }
+    studentCount++;
+    cout << "Студент добавлен на курс '" << name << "'. Всего: " << studentCount << endl;
+    return true;
+}
+
+/**
+ * @brief Удалить одного студента с курса
+ * @return true при успехе; false если студентов уже нет
+ */
+bool Course::removeStudent() {
+    if (studentCount <= 0) {
+        cerr << "Ошибка. На курсе '" << name << "' нет студентов" << endl;
+        return false;
+    }
+    studentCount--;
+    cout << "Студент удален с курса '" << name << "'. Всего: " << studentCount << endl;
+    return true;
+}
+
+/**
+ * @brief Изменить количество учебных часов
+ * @param newHours Новое количество часов (> 0)
+ * @return true при успехе; false если newHours <= 0
+ */
+bool Course::changeHours(int newHours) {
+    if (newHours <= 0) {
+        cerr << "Ошибка. Количество часов должно быть > 0" << endl;
+        return false;
+    }
+    hours = newHours;
+    cout << "Курс '" << name << "': новое количество часов = " << hours << endl;
+    return true;
+}
+
+/**
+ * @brief Проверить, заполнен ли курс
+ * @return true, если количество студентов достигло максимума
+ */
+bool Course::isFull() const {
+    return studentCount >= maxStudents;
+}
+
+/**
+ * @brief Проверка инвариантов состояния
+ * @return true, если все поля согласованы
+ * @details Проверяет: studentCount >= 0, studentCount <= maxStudents,
+ *          maxStudents > 0, hours > 0.
+ */
+bool Course::isStateValid() const {
+    if (studentCount < 0) return false;
+    if (studentCount > maxStudents) return false;
+    if (maxStudents <= 0) return false;
+    if (hours <= 0) return false;
+    return true;
+}
+
+/// @brief Вывести состояние курса в консоль
+void Course::print() const {
+    cout << "===== Курс: " << name << " =====" << endl;
+    cout << "  Формат: " << formatToString(format) << endl;
+    cout << "  Студентов: " << studentCount << " / " << maxStudents << endl;
+    cout << "  Часов: " << hours << endl;
+    cout << "  Статус: " << (isFull() ? "ЗАПОЛНЕН" : "ЕСТЬ МЕСТА") << endl;
+    cout << "  Состояние: " << (isStateValid() ? "корректно" : "некорректно") << endl;
+}
