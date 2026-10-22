@@ -37,9 +37,14 @@ Polynomial::Polynomial(double a, double b, double c)
     cout << "Создан многочлен" << endl;
 }
 
-/// @brief Выводит сообщение об уничтожении объекта.
+/**
+ * @brief Увеличивает счётчик уничтоженных объектов и выводит его значение.
+ */
 Polynomial::~Polynomial() {
-    cout << "Объект уничтожен" << endl;
+    static int destroyedObjectCount = 0;
+    ++destroyedObjectCount;
+    cout << "Уничтожен объект. Всего уничтожено: "
+         << destroyedObjectCount << endl;
 }
 
 Polynomial& Polynomial::operator++() {
