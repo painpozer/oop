@@ -15,4 +15,5 @@ public:
 };
 
 
+
 #endif //LAB3_POLYNOMIAL_H
