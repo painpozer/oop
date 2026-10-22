@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cmath>
+#include <stdexcept>
 #include "Polynomial.h"
 using namespace std;
 
@@ -65,6 +66,90 @@ Polynomial Polynomial::operator--(int) {
     Polynomial oldValue(*this);
     --(*this);
     return oldValue;
+}
+
+Polynomial& Polynomial::operator+=(const Polynomial& other) {
+    a += other.a;
+    b += other.b;
+    c += other.c;
+    return *this;
+}
+
+Polynomial& Polynomial::operator-=(const Polynomial& other) {
+    a -= other.a;
+    b -= other.b;
+    c -= other.c;
+    return *this;
+}
+
+Polynomial& Polynomial::operator*=(double number) {
+    a *= number;
+    b *= number;
+    c *= number;
+    return *this;
+}
+
+Polynomial& Polynomial::operator/=(double number) {
+    if (number == 0.0) {
+        throw invalid_argument("Нельзя делить многочлен на ноль");
+    }
+
+    a /= number;
+    b /= number;
+    c /= number;
+    return *this;
+}
+
+Polynomial Polynomial::operator+(const Polynomial& other) const {
+    Polynomial result(a, b, c);
+    result += other;
+    return result;
+}
+
+Polynomial Polynomial::operator-(const Polynomial& other) const {
+    Polynomial result(a, b, c);
+    result -= other;
+    return result;
+}
+
+Polynomial Polynomial::operator*(double number) const {
+    Polynomial result(a, b, c);
+    result *= number;
+    return result;
+}
+
+Polynomial Polynomial::operator/(double number) const {
+    Polynomial result(a, b, c);
+    result /= number;
+    return result;
+}
+
+double Polynomial::valueAtOne() const {
+    return a + b + c;
+}
+
+bool Polynomial::operator<(const Polynomial& other) const {
+    return valueAtOne() < other.valueAtOne();
+}
+
+bool Polynomial::operator>(const Polynomial& other) const {
+    return other < *this;
+}
+
+bool Polynomial::operator<=(const Polynomial& other) const {
+    return !(other < *this);
+}
+
+bool Polynomial::operator>=(const Polynomial& other) const {
+    return !(*this < other);
+}
+
+bool Polynomial::operator==(const Polynomial& other) const {
+    return valueAtOne() == other.valueAtOne();
+}
+
+bool Polynomial::operator!=(const Polynomial& other) const {
+    return !(*this == other);
 }
 
 /**

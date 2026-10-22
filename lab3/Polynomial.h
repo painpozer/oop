@@ -13,6 +13,9 @@ private:
     mutable int calculateRootCount; ///< Количество вызовов поиска корней для этого объекта
     static int rootSearchCount; ///< Общее количество вызовов поиска корней
 
+    /// @brief Вычисляет значение многочлена в точке x = 1.
+    double valueAtOne() const;
+
 public:
     /**
      * @brief Создаёт нулевой многочлен.
@@ -60,10 +63,106 @@ public:
      */
     Polynomial operator--(int);
 
-    
+    /**
+     * @brief Прибавляет коэффициенты другого многочлена.
+     * @param other Многочлен, коэффициенты которого прибавляются
+     * @return Ссылка на изменённый объект
+     */
+    Polynomial& operator+=(const Polynomial& other);
 
     /**
-     * @brief Находит действительные корни многочлена.
+     * @brief Вычитает коэффициенты другого многочлена.
+     * @param other Многочлен, коэффициенты которого вычитаются
+     * @return Ссылка на изменённый объект
+     */
+    Polynomial& operator-=(const Polynomial& other);
+
+    /**
+     * @brief Умножает все коэффициенты на число.
+     * @param number Число-множитель
+     * @return Ссылка на изменённый объект
+     */
+    Polynomial& operator*=(double number);
+
+    /**
+     * @brief Делит все коэффициенты на число.
+     * @param number Число-делитель, не равное нулю
+     * @return Ссылка на изменённый объект
+     */
+    Polynomial& operator/=(double number);
+
+    /**
+      * @brief Складывает этот многочлен с другим.
+      * @param other Второй многочлен
+      * @return Новый многочлен, являющийся суммой
+      */
+     Polynomial operator+(const Polynomial& other) const;
+
+     /**
+      * @brief Вычитает другой многочлен из этого.
+      * @param other Вычитаемый многочлен
+      * @return Новый многочлен, являющийся разностью
+      */
+     Polynomial operator-(const Polynomial& other) const;
+
+     /**
+      * @brief Умножает многочлен на число.
+      * @param number Число-множитель
+      * @return Новый многочлен с умноженными коэффициентами
+      */
+     Polynomial operator*(double number) const;
+
+     /**
+      * @brief Делит многочлен на число.
+      * @param number Число-делитель, не равное нулю
+      * @return Новый многочлен с поделёнными коэффициентами
+      */
+     Polynomial operator/(double number) const;
+
+     /**
+      * @brief Сравнивает значения многочленов в точке x = 1.
+      * @param other Многочлен для сравнения
+      * @return true, если значение этого многочлена меньше значения other
+      */
+     bool operator<(const Polynomial& other) const;
+
+     /**
+      * @brief Сравнивает значения многочленов в точке x = 1.
+      * @param other Многочлен для сравнения
+      * @return true, если значение этого многочлена больше значения other
+      */
+     bool operator>(const Polynomial& other) const;
+
+     /**
+      * @brief Сравнивает значения многочленов в точке x = 1.
+      * @param other Многочлен для сравнения
+      * @return true, если значение этого многочлена не больше значения other
+      */
+     bool operator<=(const Polynomial& other) const;
+
+     /**
+      * @brief Сравнивает значения многочленов в точке x = 1.
+      * @param other Многочлен для сравнения
+      * @return true, если значение этого многочлена не меньше значения other
+      */
+     bool operator>=(const Polynomial& other) const;
+
+     /**
+      * @brief Проверяет равенство значений многочленов в точке x = 1.
+      * @param other Многочлен для сравнения
+      * @return true, если значения многочленов равны
+      */
+     bool operator==(const Polynomial& other) const;
+
+     /**
+      * @brief Проверяет неравенство значений многочленов в точке x = 1.
+      * @param other Многочлен для сравнения
+      * @return true, если значения многочленов различаются
+      */
+     bool operator!=(const Polynomial& other) const;
+
+     /**
+      * @brief Находит действительные корни многочлена.
      * @param x1 Переменная для первого найденного корня
      * @param x2 Переменная для второго найденного корня
      * @return Количество найденных действительных корней: 0, 1 или 2
