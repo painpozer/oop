@@ -41,6 +41,32 @@ Polynomial::~Polynomial() {
     cout << "Объект уничтожен" << endl;
 }
 
+Polynomial& Polynomial::operator++() {
+    ++a;
+    ++b;
+    ++c;
+    return *this;
+}
+
+Polynomial Polynomial::operator++(int) {
+    Polynomial oldValue(*this);
+    ++(*this);
+    return oldValue;
+}
+
+Polynomial& Polynomial::operator--() {
+    --a;
+    --b;
+    --c;
+    return *this;
+}
+
+Polynomial Polynomial::operator--(int) {
+    Polynomial oldValue(*this);
+    --(*this);
+    return oldValue;
+}
+
 /**
  * @brief Находит действительные корни многочлена.
  * @param x1 Переменная для первого найденного корня
