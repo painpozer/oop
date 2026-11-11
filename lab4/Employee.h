@@ -66,5 +66,12 @@ public:
      * @return Ссылка на текущего сотрудника
      */
     Employee& operator=(const Employee& other);
+
+    /**
+     * @brief Меняет имя сотрудника.
+     * @param employee Сотрудник, которого переименовываем
+     * @param newName Новое имя
+     */
+    friend void renameEmployee(Employee& employee, const string& newName);
 };
 #endif //LAB4_EMPLOYEE_H

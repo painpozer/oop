@@ -42,3 +42,7 @@ double Employee::getAverageSalary(Employee* const employees[], int count) {
 
     return sum / count;
 }
+
+void renameEmployee(Employee& employee, const string& newName) {
+    employee.name = newName;
+}
