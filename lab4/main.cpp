@@ -2,7 +2,7 @@
  * @file main.cpp
  * @brief Тестовая программа для иерархии сотрудников.
  */
-
+///
 #include "TeamLead.h"
 #include <cstddef>
 #include <fstream>
