@@ -30,6 +30,19 @@ public:
 
     /// @brief Возвращает описание менеджера.
     string getInfo() const override;
+
+    /**
+ * @brief Создаёт копию менеджера.
+ * @param other Менеджер, которого копируем
+ */
+    Manager(const Manager& other);
+
+    /**
+     * @brief Копирует данные в существующего менеджера.
+     * @param other Менеджер, чьи данные копируем
+     * @return Ссылка на текущего менеджера
+     */
+    Manager& operator=(const Manager& other);
 };
 
 #endif //LAB4_MANAGER_H

@@ -16,3 +16,16 @@ string Manager::getInfo() const {
     return "Менеджер: " + getName() +
            ", подчинённых: " + to_string(subordinateCount);
 }
+
+Manager::Manager(const Manager& other)
+    : SalariedEmployee(other), subordinateCount(other.subordinateCount) {
+}
+
+Manager& Manager::operator=(const Manager& other) {
+    if (this != &other) {
+        SalariedEmployee::operator=(other);
+        subordinateCount = other.subordinateCount;
+    }
+
+    return *this;
+}
