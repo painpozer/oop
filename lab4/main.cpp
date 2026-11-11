@@ -71,6 +71,66 @@ int main() {
             cout << employee->getInfo()
                  << ", зарплата: " << employee->calculateSalary() << '\n';
         }
+        cout << "\n--- Статистика ---\n";
+        cout << "Живых сотрудников: " << Employee::getEmployeeCount() << '\n';
+        cout << "Средняя зарплата: "
+             << Employee::getAverageSalary(employees.data(),
+                                           static_cast<int>(employees.size())) << '\n';
+        cout << "\n--- Копирование и присваивание ---\n";
+
+        TeamLead* original = nullptr;
+        for (Employee* employee : employees) {
+            original = dynamic_cast<TeamLead*>(employee);
+            if (original != nullptr) {
+                break;
+            }
+        }
+
+        if (original == nullptr) {
+            throw runtime_error("В файле нет тимлида для проверки копирования");
+        }
+
+        const string originalInfo = original->getInfo();
+
+        TeamLead copy(*original);
+        TeamLead assigned("Временный", 0.0, 0, 0, 0);
+        assigned = *original;
+
+        if (copy.getInfo() != originalInfo || assigned.getInfo() != originalInfo) {
+            throw runtime_error("Данные тимлида скопировались неверно");
+        }
+
+        renameEmployee(copy, "Копия");
+        renameEmployee(assigned, "После присваивания");
+
+        if (original->getInfo() != originalInfo) {
+            throw runtime_error("Изменились данные оригинала");
+        }
+
+        cout << "Оригинал: " << original->getInfo() << '\n';
+        cout << "Копия: " << copy.getInfo() << '\n';
+        cout << "После присваивания: " << assigned.getInfo() << '\n';
+        cout << "\n--- Множественное наследование ---\n";
+
+        Manager* managerRole = original;
+        Developer* developerRole = original;
+
+        cout << "Как менеджер, подчинённых: "
+             << managerRole->getSubordinateCount() << '\n';
+        cout << "Как разработчик, проектов: "
+             << developerRole->getProjectCount() << '\n';
+
+        Employee* fromManager = managerRole;
+        Employee* fromDeveloper = developerRole;
+
+        if (fromManager != fromDeveloper) {
+            throw runtime_error("У тимлида разные базовые части Employee");
+        }
+
+        cout << "Обе роли ведут к одному сотруднику: "
+             << fromManager->getName() << '\n';
+        cout << "Зарплата тимлида через Employee*: "
+             << fromManager->calculateSalary() << '\n';
     } catch (const exception& error) {
         cerr << error.what() << '\n';
         exitCode = 1;
@@ -78,6 +138,13 @@ int main() {
 
     for (Employee* employee : employees) {
         delete employee;
+    }
+    const int remaining = Employee::getEmployeeCount();
+    cout << "\nСотрудников после удаления: " << remaining << '\n';
+
+    if (remaining != 0) {
+        cerr << "Счётчик сотрудников не вернулся к нулю\n";
+        exitCode = 1;
     }
 
     return exitCode;
