@@ -12,3 +12,17 @@ double SalariedEmployee::calculateSalary() const {
     double experienceBonus = baseSalary * 0.05 * experience;
     return baseSalary + experienceBonus + getBonus();
 }
+
+SalariedEmployee::SalariedEmployee(const SalariedEmployee& other)
+    : Employee(other), baseSalary(other.baseSalary), experience(other.experience) {
+}
+
+SalariedEmployee& SalariedEmployee::operator=(const SalariedEmployee& other) {
+    if (this != &other) {
+        Employee::operator=(other);
+        baseSalary = other.baseSalary;
+        experience = other.experience;
+    }
+
+    return *this;
+}

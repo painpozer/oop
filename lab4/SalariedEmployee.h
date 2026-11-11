@@ -27,6 +27,20 @@ public:
 
     /// @brief Рассчитывает зарплату с учётом стажа и бонуса.
     double calculateSalary() const override;
+
+    /**
+     * @brief Копирует имя, оклад и стаж сотрудника.
+     * @param other Сотрудник, которого копируем
+     */
+    SalariedEmployee(const SalariedEmployee& other);
+
+    /**
+     * @brief Присваивает имя, оклад и стаж другого сотрудника.
+     * @param other Сотрудник, чьи данные копируем
+     * @return Ссылка на текущего сотрудника
+     */
+    SalariedEmployee& operator=(const SalariedEmployee& other);
 };
+
 
 #endif //LAB4_SALARIED_EMPLOYEE_H
