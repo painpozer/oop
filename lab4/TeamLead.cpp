@@ -13,3 +13,16 @@ string TeamLead::getInfo() const {
            ", подчинённых: " + to_string(getSubordinateCount()) +
            ", проектов: " + to_string(getProjectCount());
 }
+
+TeamLead::TeamLead(const TeamLead& other)
+    : SalariedEmployee(other), Manager(other), Developer(other) {
+}
+
+TeamLead& TeamLead::operator=(const TeamLead& other) {
+    if (this != &other) {
+        Manager::operator=(other);
+        Developer::operator=(other);
+    }
+
+    return *this;
+}

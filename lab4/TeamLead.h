@@ -27,6 +27,19 @@ public:
 
     /// @brief Возвращает описание тимлида.
     string getInfo() const override;
+
+    /**
+     * @brief Создаёт копию тимлида.
+     * @param other Тимлид, которого копируем
+     */
+    TeamLead(const TeamLead& other);
+
+    /**
+     * @brief Копирует данные в существующего тимлида.
+     * @param other Тимлид, чьи данные копируем
+     * @return Ссылка на текущего тимлида
+     */
+    TeamLead& operator=(const TeamLead& other);
 };
 
 #endif //LAB4_TEAM_LEAD_H
