@@ -30,6 +30,19 @@ public:
 
     /// @brief Возвращает описание разработчика.
     string getInfo() const override;
+
+    /**
+     * @brief Создаёт копию разработчика.
+     * @param other Разработчик, которого копируем
+     */
+    Developer(const Developer& other);
+
+    /**
+     * @brief Копирует данные в существующего разработчика.
+     * @param other Разработчик, чьи данные копируем
+     * @return Ссылка на текущего разработчика
+     */
+    Developer& operator=(const Developer& other);
 };
 
 #endif //LAB4_DEVELOPER_H

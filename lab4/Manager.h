@@ -32,9 +32,9 @@ public:
     string getInfo() const override;
 
     /**
- * @brief Создаёт копию менеджера.
- * @param other Менеджер, которого копируем
- */
+     * @brief Создаёт копию менеджера.
+     * @param other Менеджер, которого копируем
+     */
     Manager(const Manager& other);
 
     /**
