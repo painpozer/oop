@@ -29,3 +29,16 @@ Employee& Employee::operator=(const Employee& other) {
 int Employee::getEmployeeCount() {
     return employeeCount;
 }
+
+double Employee::getAverageSalary(Employee* const employees[], int count) {
+    if (count <= 0) {
+        return 0.0;
+    }
+
+    double sum = 0.0;
+    for (int i = 0; i < count; ++i) {
+        sum += employees[i]->calculateSalary();
+    }
+
+    return sum / count;
+}

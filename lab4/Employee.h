@@ -41,6 +41,14 @@ public:
     virtual double calculateSalary() const = 0;
 
     /**
+     * @brief Рассчитывает среднюю зарплату сотрудников.
+     * @param employees Массив указателей на сотрудников
+     * @param count Количество сотрудников в массиве
+     * @return Средняя зарплата или 0.0 для пустого списка
+     */
+    static double getAverageSalary(Employee* const employees[], int count);
+
+    /**
      * @brief Формирует описание сотрудника.
      * @return Строка с информацией о сотруднике
      */
