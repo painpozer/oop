@@ -12,6 +12,7 @@ using namespace std;
  */
 class Employee {
 private:
+    static int employeeCount; ///< Количество живых сотрудников
     string name; ///< Имя сотрудника
 
 public:
@@ -29,6 +30,9 @@ public:
      * @return Имя сотрудника
      */
     string getName() const;
+
+    /// @brief Возвращает количество живых сотрудников.
+    static int getEmployeeCount();
 
     /**
      * @brief Рассчитывает зарплату сотрудника.

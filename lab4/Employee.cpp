@@ -1,15 +1,21 @@
 #include "Employee.h"
 
+int Employee::employeeCount = 0;
+
 Employee::Employee(const string& name) : name(name) {
+    ++employeeCount;
 }
 
-Employee::~Employee() = default;
+Employee::~Employee() {
+    --employeeCount;
+}
 
 string Employee::getName() const {
     return name;
 }
 
 Employee::Employee(const Employee& other) : name(other.name) {
+    ++employeeCount;
 }
 
 Employee& Employee::operator=(const Employee& other) {
@@ -18,4 +24,8 @@ Employee& Employee::operator=(const Employee& other) {
     }
 
     return *this;
+}
+
+int Employee::getEmployeeCount() {
+    return employeeCount;
 }
