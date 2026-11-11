@@ -41,5 +41,18 @@ public:
      * @return Строка с информацией о сотруднике
      */
     virtual string getInfo() const = 0;
+
+    /**
+     * @brief Инициализирует имя из другого сотрудника.
+     * @param other Сотрудник, которого копируем
+     */
+    Employee(const Employee& other);
+
+    /**
+     * @brief Присваивает имя другого сотрудника.
+     * @param other Сотрудник, чьё имя копируем
+     * @return Ссылка на текущего сотрудника
+     */
+    Employee& operator=(const Employee& other);
 };
 #endif //LAB4_EMPLOYEE_H

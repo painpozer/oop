@@ -8,3 +8,14 @@ Employee::~Employee() = default;
 string Employee::getName() const {
     return name;
 }
+
+Employee::Employee(const Employee& other) : name(other.name) {
+}
+
+Employee& Employee::operator=(const Employee& other) {
+    if (this != &other) {
+        name = other.name;
+    }
+
+    return *this;
+}
